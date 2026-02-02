@@ -1,49 +1,25 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>ガソリン代計算ツール</title>
-<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 :root{
-    /* --- Cafe Theme (Light)<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ガソリン代計算ツール</title>
-
-<style>
-:root{
-    /* --- Cafe Theme Colors --- */
-    --main: #558b2f;       /* 抹茶グリーン */
-    --main-hover: #33691e;
-    --main-dark: #aed581;  /* ダークモード用ライトグリーン */
-    
-    --bg: #f2efe9;         /* ラテベージュ */
-    --bg-dark: #251d1a;    /* ダークコーヒー */
-    
-    --text: #4e342e;       /* エスプレッソ */
-    --text-light: #8d6e63; /* ココアブラウン */
-    --text-dark: #d7ccc8;  /* ミルクティー */
-    
-    --card-bg: #fdfbf7;    /* クリームホワイト */
-    --card-bg-dark: #3e2723; /* ダークロースト */
-    
-    --border: #d7ccc8;     /* ミルクココア */
-    --border-dark: #5d4037;
-    
-    --input-bg: #faf8f5;
-    --input-bg-dark: #4e342e;
-    
-    --radius: 16px;        /* 角丸を少し柔らかく */
-    --shadow: 0 4px 12px rgba(78, 52, 46, 0.08); /* 茶色ベースの影 */
-    
-    --highlight-color: #f9a825; /* マスタードイエロー */
-    --highlight-color-dark: #ffd54f;
+    --main: #7b9cff;
+    --main-dark: #4a6cf7;
+    --bg: #f7f8fc;
+    --bg-dark: #1e1f25;
+    --text: #2a2a2a;
+    --text-dark: #e8e8e8;
+    --card-bg: #ffffff;
+    --card-bg-dark: #2d2f36;
+    --radius: 14px;
+    --shadow: 0 8px 28px rgba(0,0,0,0.12);
+    --highlight-color: #ff8c00;
+    --highlight-color-dark: #ffda79;
 }
 
 *{box-sizing:border-box}
@@ -51,140 +27,117 @@ body{
     font-family: 'Segoe UI', system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
     margin:0;
     padding:0;
-    background: var(--bg); /* グラデーション廃止 */
+    background: linear-gradient(180deg,#ffffff 0%,var(--bg) 100%);
     color:var(--text);
     transition:background .3s,color .3s;
-    line-height: 1.6;
 }
 
-/* --- Dark Mode --- */
 body.dark{
     background: var(--bg-dark);
     color: var(--text-dark);
 }
 body.dark .container{
     background:var(--card-bg-dark);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
 body.dark .header{
-    background:var(--card-bg-dark); /* ヘッダーも落ち着いた色に */
-    color:var(--main-dark);
-    border-bottom: 1px solid var(--border-dark);
+    background:var(--main-dark);
+    color:#ffffff;
 }
 body.dark input[type="number"],
 body.dark input[type="text"]{
-    background: var(--input-bg-dark);
+    background: #2b2d34;
     color: #ffffff;
-    border-color: var(--border-dark);
+    border-color:#555;
 }
 body.dark label{
-    color: var(--text-dark);
-    opacity: 0.8;
+    color:#dcdcdc;
 }
 
 .result{
-    color: var(--text);
+    color: #111;
 }
 .result strong {
     color: var(--highlight-color); 
 }
 body.dark .result{
-    background: #4e342e; /* 濃い茶色 */
-    color: var(--text-dark);
-    border-left-color: var(--main-dark);
+    background:#39405a;
+    color:#f0f0ff;
+    border-left-color:#9cb3ff;
 }
 body.dark .result strong {
     color: var(--highlight-color-dark);
 }
 
 body.dark .historyItem{
-    background: var(--input-bg-dark);
-    border-left-color: var(--main-dark);
-    color: var(--text-dark);
+    background:#383b46;
+    border-left-color:#9cb3ff;
+    color:#e8e8e8;
     box-shadow:none;
-    border: 1px solid var(--border-dark);
 }
 body.dark #historyBox{
-    background: #2f2725; /* 少し暗い茶色 */
+    background:#2f323c;
 }
-body.dark .copy-btn.primary{
-    background: var(--main-hover);
-    color: #fff;
-}
+body.dark .copy-btn.primary,
 body.dark .copy-btn.secondary{
-    background: var(--border-dark);
-    color: var(--text-dark);
+    color:#ffffff;
 }
 body.dark .theme-toggle{
-    color: var(--text-dark);
-    background: rgba(255,255,255,0.1);
+    color:#ffffff;
+    background: rgba(255,255,255,0.18);
 }
 
 body.dark .historyItem b {
-    color: #ffd54f;
+    color: #cfcfff;
 }
 body.dark .historyItem strong {
     color: var(--highlight-color-dark) !important;
 }
 
 body.dark .tab-btn{
-    background: var(--input-bg-dark);
-    color: var(--text-dark);
-    border: 1px solid var(--border-dark);
+    background: #4a4d5c;
+    color: #c9c9c9;
 }
 body.dark .tab-btn.active{
-    background: var(--main-hover);
+    background: var(--main-dark);
     color: #ffffff;
-    border-color: var(--main-hover);
 }
 body.dark #carList strong,
 body.dark .car-item strong,
 body.dark .car-input-labels{
-    color: var(--text-dark);
+    color:#e0e0e0;
 }
 body.dark #carList input[type="number"],
 body.dark #carList input[type="text"]{
-    background: var(--input-bg-dark);
+    background: #2b2d34;
     color: #ffffff;
-    border-color: var(--border-dark);
+    border-color:#555;
 }
 
 body.dark .carName{
-    border-color: var(--border-dark) !important;
+    border-color: #555 !important;
 }
 
-/* --- Layout --- */
 .header{
-    background: var(--main);
-    padding: 18px 22px;
+    background:var(--main);
+    padding:22px;
     text-align:center;
     color:#fff;
-    font-size:20px;
+    font-size:22px;
     font-weight:700;
     position:relative;
-    box-shadow: var(--shadow);
-    letter-spacing: 0.05em;
+    box-shadow:var(--shadow);
 }
 .theme-toggle{
     position:absolute;
     right:18px;
-    top:12px;
-    background: rgba(255,255,255,0.2);
-    padding:8px;
-    border-radius:50%;
+    top:14px;
+    background: rgba(255,255,255,0.18);
+    padding:8px 12px;
+    border-radius:999px;
     cursor:pointer;
     color:#fff;
-    font-size:16px;
+    font-size:14px;
     border: none;
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.3s;
-}
-.theme-toggle:hover {
-    background: rgba(255,255,255,0.3);
 }
 
 .container{
@@ -194,183 +147,142 @@ body.dark .carName{
     background:var(--card-bg);
     border-radius:var(--radius);
     box-shadow:var(--shadow);
-    border: 1px solid var(--border); /* 枠線追加 */
 }
 
 label{
     display:block;
-    margin-top:16px;
-    font-size:14px;
+    margin-top:14px;
+    font-size:13px;
     font-weight:700;
-    color: var(--text-light); /* 少し薄い茶色 */
+    color:#525252;
 }
 .input-row{display:flex;align-items:center;gap:10px;}
-
 input[type="number"], input[type="text"]{
     flex:1;
     width:100%;
     padding:12px;
     border-radius:12px;
-    border:1px solid var(--border);
-    background: var(--input-bg);
-    color: var(--text);
-    font-size:16px;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    border:1px solid #dcdfea;
+    background:#fff;
+    font-size:15px;
 }
-input[type="number"]:focus, input[type="text"]:focus {
-    outline: none;
-    border-color: var(--main);
-    box-shadow: 0 0 0 3px rgba(85, 139, 47, 0.2);
-}
-
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button{ -webkit-appearance: none; margin: 0; }
-input[type="checkbox"]{ transform: scale(1.05); margin-left:6px; accent-color: var(--main); }
+input[type="checkbox"]{ transform: scale(1.05); margin-left:6px; }
 
 button.main-btn{
     width:100%;
-    margin-top:24px;
-    padding:14px;
+    margin-top:20px;
+    padding:13px;
     background:var(--main);
     color:#fff;
     border:none;
-    border-radius:50px;
+    border-radius:40px;
     font-size:16px;
-    font-weight: bold;
     cursor:pointer;
-    transition: background 0.3s, transform 0.1s;
-    box-shadow: 0 4px 10px rgba(85, 139, 47, 0.3);
 }
-button.main-btn:hover { background: var(--main-hover); }
-button.main-btn:active { transform: scale(0.98); }
-
 button.sub-btn{
     width:100%;
     margin-top:12px;
-    padding:12px;
-    background: transparent;
-    color: var(--text);
-    border: 2px solid var(--border);
+    padding:11px;
+    background:#d4d7dd;
+    color:#222;
+    border:none;
     border-radius:12px;
     font-size:15px;
     cursor:pointer;
-    transition: all 0.2s;
 }
-button.sub-btn:hover {
-    background: var(--input-bg);
-    border-color: var(--text-light);
-}
-
 .tab-btn{
     flex:1;
-    padding:12px;
-    border:1px solid var(--border);
-    border-radius:12px;
-    background: var(--input-bg);
-    color: var(--text-light);
+    padding:10px;
+    border:none;
+    border-radius:10px;
+    background:#e0e0e0;
+    color:#333;
     font-weight:600;
     cursor:pointer;
-    transition:all 0.2s;
+    transition:background .2s, color .2s;
 }
 .tab-btn.active{
     background:var(--main);
     color:#fff;
-    border-color: var(--main);
 }
 
 .car-list-container { padding-top: 5px; }
 
-/* 複数台入力 */
+/* 複数台入力：ラベル行・入力行を完全に同一グリッドにする */
 .car-input-labels,
 .car-row-inner{
     display: grid;
     grid-template-columns: 100px 1fr 1fr 1fr 1fr;
-    gap: 8px;
+
+        gap: 6px;
     align-items: center;
 }
 
+/* ラベルの位置調整 */
 .car-input-labels > div{
     text-align: center;
-    font-size: 0.85rem;
-    color: var(--text-light);
 }
-.car-input-labels > div:first-child{ text-align: left; }
+.car-input-labels > div:first-child{
+    text-align: left;
+}
 
-.carName{ text-align: left !important; }
+/* 車名入力 */
+.carName{
+    text-align: left !important;
+}
 
-.car-item { 
-    margin-bottom: 15px; padding: 10px 0; 
-    border-bottom: 1px dashed var(--border); 
-}
-#carList input[type="number"], #carList input[type="text"]{ 
-    padding: 8px; border-radius: 8px; font-size: 14px; text-align: center; 
-}
-#carList strong { display:flex; justify-content:space-between; align-items:center; margin-top:14px; font-size:14px; color:var(--text); }
-.carName { flex: 0 0 100px; text-align: left !important; padding: 8px 10px !important; }
+.car-item { margin-bottom: 15px; padding: 8px 0; border-bottom: 1px solid #eee; }
+#carList input[type="number"], #carList input[type="text"]{ padding: 8px 6px; border-radius: 8px; font-size: 14px; text-align: center; }
+#carList strong { display:flex; justify-content:space-between; align-items:center; margin-top:14px; font-size:14px; color:#333; }
+  .carName { flex: 0 0 100px; text-align: left !important; padding: 8px 12px !important; }
 
 .result{
-    margin-top:24px;
-    padding:20px;
-    background: #fff8e1; /* 薄い黄色/ベージュ */
+    margin-top:18px;
+    padding:16px 18px;
+    background:#eef3ff;
     border-left:6px solid var(--main);
     border-radius:12px;
     font-size:15px;
-    line-height:1.7;
+    line-height:1.6;
     transition:background .25s,color .25s;
-    color: var(--text);
 }
 
-.copy-row{ display:flex; gap:10px; margin-top:16px; }
-.copy-btn{ flex:1; padding:12px; border-radius:12px; border:none; cursor:pointer; font-size:14px; font-weight: bold; transition: opacity 0.2s; }
+.copy-row{ display:flex; gap:10px; margin-top:12px; }
+.copy-btn{ flex:1; padding:10px; border-radius:12px; border:none; cursor:pointer; font-size:14px; }
 .copy-btn.primary{ background:var(--main); color:#fff; }
-.copy-btn.primary:hover { background: var(--main-hover); }
-.copy-btn.secondary{ background: var(--border); color: var(--text); }
-.copy-btn.secondary:hover { background: var(--text-light); color: #fff; }
+.copy-btn.secondary{ background:#9aa3ff; color:#fff; }
 
-#historyBox{ 
-    margin-top:32px; padding:20px; 
-    background: var(--input-bg); 
-    border-radius:12px; 
-    border: 1px solid var(--border);
-}
-#historyList{ display:flex; flex-direction:column; gap:12px; margin-top:12px; }
-.historyItem{ 
-    padding:14px; border-radius:12px; 
-    background: var(--card-bg); 
-    border: 1px solid var(--border);
-    border-left:6px solid var(--main); 
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02); 
-    transition: transform .18s, box-shadow .18s; 
-    cursor:pointer; 
-    color: var(--text); 
-    line-height:1.5; font-size:14px; 
-}
-.historyItem b{ display:block; font-size:12px; color: var(--text-light); margin-bottom:6px; }
-.historyItem:hover{ transform: translateY(-2px); box-shadow: var(--shadow); }
+#historyBox{ margin-top:28px; padding:18px; background:#eef0ff; border-radius:12px; }
+#historyList{ display:flex; flex-direction:column; gap:12px; margin-top:8px; }
+.historyItem{ padding:12px 14px; border-radius:12px; background:#fff; border-left:6px solid var(--main); box-shadow:0 2px 8px rgba(0,0,0,0.06); transition: transform .18s, box-shadow .18s; cursor:pointer; color:#222; line-height:1.5; font-size:14px; }
+.historyItem b{ display:block; font-size:13px; color:#444; margin-bottom:6px; }
+.historyItem:hover{ transform: translateY(-3px); box-shadow:0 6px 14px rgba(0,0,0,0.12); }
 
 @media (max-width:520px){
     .car-input-labels,
-    .car-row-inner{
-       grid-template-columns: 80px 1fr 1fr 1fr 1fr;
-    }
-    .container{ margin:16px; padding:20px; }
-    .theme-toggle{ right:12px; top:12px; }
+.car-row-inner{
+   grid-template-columns: 80px 1fr 1fr 1fr 1fr;
+
+}
+    .container{ margin:18px; padding:18px; }
+    .theme-toggle{ right:12px; top:10px; padding:6px 10px; }
     .car-row-inner{ flex-wrap: wrap; }
     .car-input-labels > div:first-child, .carName { flex: 0 0 80px; }
-    .header { font-size: 18px; }
-}
+     }
 </style>
 </head>
 <body>
 <div class="header">
-    <i class="fa-solid fa-calculator"></i> ガソリン代計算ツール
+    ガソリン代計算ツール
     <button class="theme-toggle" id="themeToggle" aria-label="テーマ切替">🌙</button>
 </div>
 
 <div class="container" role="main" aria-labelledby="mainTitle">
-    <h2 id="mainTitle" style="margin:0 0 12px 0; font-size:1.1rem; color:var(--main); text-align:center;">計算モードを選択</h2>
+    <h2 id="mainTitle" style="margin:0 0 8px 0; font-size:1.1rem; color:var(--main);">計算モードを選択してください</h2>
 
-    <div style="display:flex; gap:10px; margin-bottom:20px;">
+    <div style="display:flex; gap:8px; margin-bottom:14px;">
         <button class="tab-btn active" data-mode="single" aria-controls="singleCarForm">1台</button>
         <button class="tab-btn" data-mode="multi" aria-controls="multiCarForm">複数台</button>
     </div>
@@ -399,49 +311,49 @@ button.sub-btn:hover {
                 <div>車名</div>
                 <div class="multi-car-input">走行距離(km)</div>
                 <div class="multi-car-input">燃費(km/L)</div>
-                <div class="multi-car-input">単価(円/L)</div>
+                <div class="multi-car-input">ガソリン価格(円/L)</div>
                 <div class="multi-car-input">諸経費(円)</div>
             </div>
             <div id="carList"></div>
         </div>
         
-        <button class="sub-btn" id="addCarBtn" style="margin-top:16px;">+ 車を追加</button>
+        <button class="sub-btn" id="addCarBtn" style="margin-top:10px;">+ 車を追加</button>
 
         <label for="multiPeople" style="margin-top:20px;">割り勘人数（任意）</label>
         <input id="multiPeople" type="number" inputmode="decimal" aria-label="割り勘人数" placeholder="例：3">
     </div>
 
     <button class="main-btn" id="calcBtn" aria-label="計算する">計算する</button>
-    <button class="sub-btn" id="resetBtn" aria-label="入力をリセット" style="margin-top:16px; border:none; color:var(--text-light); text-decoration:underline;">入力をリセット</button>
+    <button class="sub-btn" id="resetBtn" aria-label="入力をリセット" style="margin-top:10px;">入力をリセット</button>
 
     <div id="result" class="result" style="display:none;" role="status" aria-live="polite"></div>
-<div id="circleWrap" style="display:none; margin-top:20px;">
-    <div class="result" style="background:var(--input-bg); border-left-color:var(--highlight-color);">
-        <strong style="color:var(--main);">サークル用 精算（任意）</strong>
+<div id="circleWrap" style="display:none; margin-top:16px;">
+    <div class="result" style="background:#fff7e6; border-left-color:var(--highlight-color);">
+        <strong>サークル用 精算（任意）</strong>
 
-        <div style="margin-top:12px;">
+        <div style="margin-top:10px;">
             人数：
-            <input type="number" id="circlePeople" value="1" style="width:80px; padding:6px; font-size:14px;">
+            <input type="number" id="circlePeople" value="1" style="width:80px;">
         </div>
 
-        <div style="margin-top:8px;">
+        <div style="margin-top:6px;">
             調整費：
-            <input type="number" id="adjustCost" value="0" style="padding:6px; font-size:14px;"> 円
+            <input type="number" id="adjustCost" value="0"> 円
         </div>
-        <div style="margin-top:8px;">
+        <div style="margin-top:6px;">
             レンタカー代：
-            <input type="number" id="rentCost" value="0" style="padding:6px; font-size:14px;"> 円
+            <input type="number" id="rentCost" value="0"> 円
         </div>
-        <div style="margin-top:8px;">
+        <div style="margin-top:6px;">
             高速代：
-            <input type="number" id="highwayCost" value="0" style="padding:6px; font-size:14px;"> 円
+            <input type="number" id="highwayCost" value="0"> 円
         </div>
 
-        <button class="sub-btn" style="margin-top:14px; background:var(--card-bg);" onclick="calcCircle()">
+        <button class="sub-btn" style="margin-top:10px;" onclick="calcCircle()">
             精算を計算
         </button>
 
-        <div id="circleResult" style="margin-top:14px;"></div>
+        <div id="circleResult" style="margin-top:10px;"></div>
     </div>
 </div>
 
@@ -450,13 +362,13 @@ button.sub-btn:hover {
         <button class="copy-btn secondary" id="copyPerBtn" aria-label="一人あたりの金額をコピー" style="display:none;">📋 1人あたりコピー</button>
     </div>
 
-    <div id="historyBox" aria-live="polite">
-        <strong style="font-size:15px; color:var(--text-light);">履歴一覧</strong>
+    <div id="historyBox" aria-live="polite" style="margin-top:20px;">
+        <strong style="font-size:15px;">履歴一覧</strong>
         <div id="historyList"></div>
     </div>
 </div>
 
-<footer style="text-align:center; margin:30px 0; opacity:0.6; font-size:0.85rem;">© 2025 Gas Dai Calculator</footer>
+<footer style="text-align:center; margin:24px 0; opacity:0.6;">© 2025 Gas Dai Calculator</footer>
 
 <script>
 let lastCost = 0;
@@ -551,7 +463,7 @@ function addCarRow(data={}) {
     div.className = 'car-item';
     
     const deleteBtnHtml = (idx > 0) 
-        ? `<button class="delCarBtn" style="background:none;border:none;color:var(--highlight-color);cursor:pointer;font-size:18px;padding:0;line-height:1;position:relative;top:2px;" aria-label="車を削除">&times;</button>` 
+        ? `<button class="delCarBtn" style="background:none;border:none;color:red;cursor:pointer;font-size:18px;padding:0;line-height:1;position:relative;top:2px;" aria-label="車を削除">&times;</button>` 
         : '';
     
     div.innerHTML = `
@@ -616,7 +528,7 @@ function removeCarRow(carItem){
                 const newDelBtn = document.createElement('button');
                 newDelBtn.className = 'delCarBtn';
                 newDelBtn.innerHTML = '&times;';
-                newDelBtn.style.cssText = 'background:none;border:none;color:var(--highlight-color);cursor:pointer;font-size:18px;padding:0;line-height:1;position:relative;top:2px;';
+                newDelBtn.style.cssText = 'background:none;border:none;color:red;cursor:pointer;font-size:18px;padding:0;line-height:1;position:relative;top:2px;';
                 newDelBtn.setAttribute('aria-label', '車を削除');
                 newDelBtn.addEventListener('click', () => removeCarRow(item));
                 header.appendChild(newDelBtn);
@@ -1018,632 +930,5 @@ function restore(data){
     alert('履歴から復元しました');
 }
 </script>
-</body>
-</html> --- */
-    --main: #558b2f;        /* 抹茶グリーン */
-    --main-dark: #33691e;
-    --accent: #f9a825;      /* マスタードイエロー */
-    
-    --bg: #f2efe9;          /* ラテベージュ */
-    --text: #4e342e;        /* エスプレッソ */
-    --text-light: #8d6e63;  /* ココアブラウン */
-    
-    --card-bg: #fdfbf7;     /* クリームホワイト */
-    --border: #d7ccc8;      /* ミルクココア */
-    
-    --input-bg: #faf8f5;
-    --shadow: 0 4px 12px rgba(78, 52, 46, 0.08); /* 茶色ベースの柔らかい影 */
-    
-    --radius: 16px;         /* 角丸を強めに */
-    --highlight-color: #ef6c00;
-}
-
-body.dark {
-    /* --- Cafe Theme (Dark) --- */
-    --main: #aed581;        /* ライトグリーン */
-    --main-dark: #7cb342;
-    --accent: #ffd54f;
-    
-    --bg: #251d1a;          /* ダークコーヒー */
-    --text: #d7ccc8;        /* ミルクティー */
-    --text-light: #a1887f;
-    
-    --card-bg: #3e2723;     /* ダークロースト */
-    --border: #5d4037;
-    
-    --input-bg: #4e342e;
-    --shadow: 0 4px 12px rgba(0,0,0,0.4);
-    
-    --highlight-color: #ffcc80;
-}
-
-*{box-sizing:border-box}
-
-body{
-    font-family: 'M PLUS Rounded 1c', 'Hiragino Kaku Gothic ProN', sans-serif; /* フォント変更 */
-    margin:0;
-    padding:20px 10px 40px;
-    background-color: var(--bg);
-    color:var(--text);
-    transition:background .3s, color .3s;
-    line-height: 1.6;
-}
-
-.container{
-    max-width:600px;
-    margin:0 auto;
-}
-
-/* タイトルエリア */
-h1 {
-    text-align: center;
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    color: var(--text);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-h1 i { color: var(--main); }
-
-/* ダークモード切替スイッチ */
-.theme-switch-wrapper {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 10px;
-}
-.theme-switch {
-    background: none;
-    border: 2px solid var(--border);
-    color: var(--text-light);
-    padding: 6px 12px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-family: inherit;
-    font-weight: bold;
-}
-.theme-switch:hover {
-    background: var(--input-bg);
-    color: var(--text);
-    border-color: var(--text-light);
-}
-
-/* カード共通 */
-.card {
-    background: var(--card-bg);
-    border-radius: var(--radius);
-    padding: 24px;
-    box-shadow: var(--shadow);
-    margin-bottom: 24px;
-    border: 1px solid var(--border);
-}
-
-/* タブ切り替え */
-.tabs {
-    display: flex;
-    margin-bottom: 20px;
-    background: var(--input-bg);
-    padding: 4px;
-    border-radius: 50px;
-    border: 1px solid var(--border);
-}
-.tab-btn {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    background: transparent;
-    color: var(--text-light);
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 50px;
-    transition: all 0.3s;
-    font-family: inherit;
-    font-size: 0.95rem;
-}
-.tab-btn.active {
-    background: var(--main);
-    color: #fff;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-/* 入力フォーム */
-.form-group { margin-bottom: 16px; }
-label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: bold;
-    font-size: 0.9rem;
-    color: var(--text-light);
-}
-input[type="number"], input[type="text"] {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    background: var(--input-bg);
-    color: var(--text);
-    font-size: 1.1rem;
-    font-family: inherit;
-    transition: 0.2s;
-}
-input:focus {
-    outline: none;
-    border-color: var(--main);
-    box-shadow: 0 0 0 3px rgba(85, 139, 47, 0.2);
-}
-.unit {
-    float: right;
-    margin-top: -38px;
-    margin-right: 14px;
-    color: var(--text-light);
-    font-size: 0.9rem;
-    pointer-events: none;
-}
-
-/* 複数台モードのスタイル */
-.car-row {
-    background: var(--input-bg);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 12px;
-    position: relative;
-}
-.car-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: var(--main);
-    border-bottom: 1px dashed var(--border);
-    padding-bottom: 8px;
-}
-.btn-remove {
-    background: transparent;
-    border: none;
-    color: var(--text-light);
-    cursor: pointer;
-    font-size: 1rem;
-    transition: color 0.2s;
-}
-.btn-remove:hover { color: #d32f2f; }
-
-.btn-add-car {
-    width: 100%;
-    padding: 10px;
-    background: transparent;
-    border: 2px dashed var(--border);
-    color: var(--text-light);
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.2s;
-    font-family: inherit;
-    margin-bottom: 16px;
-}
-.btn-add-car:hover {
-    border-color: var(--main);
-    color: var(--main);
-    background: rgba(85, 139, 47, 0.05);
-}
-
-/* 計算ボタン */
-.btn-calc {
-    width: 100%;
-    padding: 16px;
-    background: var(--main);
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(85, 139, 47, 0.3);
-    transition: transform 0.1s, background 0.2s;
-    font-family: inherit;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-}
-.btn-calc:hover { background: var(--main-dark); }
-.btn-calc:active { transform: scale(0.98); }
-
-/* 結果表示 */
-#result {
-    display: none;
-    margin-top: 30px;
-    background: var(--input-bg);
-    border-radius: var(--radius);
-    padding: 24px;
-    border: 2px solid var(--main);
-    text-align: center;
-}
-.res-label { font-size: 0.9rem; color: var(--text-light); margin-bottom: 5px; }
-.res-value { font-size: 2.2rem; font-weight: bold; color: var(--main); line-height: 1.2; }
-.res-detail { margin-top: 15px; font-size: 0.95rem; text-align: left; color: var(--text); border-top: 1px dashed var(--border); padding-top: 15px; }
-.res-detail div { margin-bottom: 6px; display: flex; justify-content: space-between; }
-
-/* コピー機能 */
-#copyRow {
-    display: none;
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px dashed var(--border);
-}
-.btn-copy {
-    background: var(--text);
-    color: var(--bg);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 50px;
-    font-weight: bold;
-    cursor: pointer;
-    font-family: inherit;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.9rem;
-    transition: opacity 0.2s;
-}
-.btn-copy:hover { opacity: 0.9; }
-
-/* 履歴 */
-.history-title {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: var(--text-light);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.history-item {
-    background: var(--input-bg);
-    padding: 12px 16px;
-    border-radius: 12px;
-    margin-bottom: 10px;
-    border: 1px solid var(--border);
-    cursor: pointer;
-    transition: 0.2s;
-    font-size: 0.9rem;
-}
-.history-item:hover {
-    border-color: var(--main);
-    transform: translateX(2px);
-}
-
-</style>
-</head>
-<body>
-
-<div class="container">
-    <div class="theme-switch-wrapper">
-        <button class="theme-switch" id="themeToggle">
-            <i class="fas fa-moon"></i> Dark Mode
-        </button>
-    </div>
-
-    <h1><i class="fas fa-gas-pump"></i> ガソリン代計算</h1>
-
-    <div class="card">
-        <div class="tabs">
-            <button class="tab-btn active" data-mode="single" onclick="switchTab('single')">単独計算</button>
-            <button class="tab-btn" data-mode="multi" onclick="switchTab('multi')">複数台合計</button>
-        </div>
-
-        <div id="singleMode">
-            <div class="form-group">
-                <label>走行距離</label>
-                <input type="number" id="distance" placeholder="例: 250">
-                <span class="unit">km</span>
-            </div>
-            <div class="form-group">
-                <label>燃費</label>
-                <input type="number" id="fuelEconomy" placeholder="例: 15">
-                <span class="unit">km/L</span>
-            </div>
-            <div class="form-group">
-                <label>ガソリン価格</label>
-                <input type="number" id="gasPrice" placeholder="例: 170">
-                <span class="unit">円/L</span>
-            </div>
-            <div class="form-group">
-                <label>その他経費 (高速代など)</label>
-                <input type="number" id="extraCost" placeholder="0">
-                <span class="unit">円</span>
-            </div>
-            <div class="form-group">
-                <label>割り勘人数 (任意)</label>
-                <input type="number" id="people" placeholder="入力で1人あたりを算出">
-                <span class="unit">人</span>
-            </div>
-        </div>
-
-        <div id="multiMode" style="display:none;">
-            <div id="carList"></div>
-            <button class="btn-add-car" onclick="addCarRow()"><i class="fas fa-plus"></i> 車両を追加</button>
-            
-            <div class="form-group">
-                <label>割り勘人数 (任意)</label>
-                <input type="number" id="multiPeople" placeholder="合計額を人数で割る場合に入力">
-                <span class="unit">人</span>
-            </div>
-        </div>
-
-        <button class="btn-calc" onclick="calc()"><i class="fas fa-calculator"></i> 計算する</button>
-
-        <div id="result">
-            <div class="res-label">ガソリン代 + 経費</div>
-            <div class="res-value" id="resTotal">0円</div>
-            <div id="resDetail" class="res-detail"></div>
-            
-            <div id="copyRow">
-                <button class="btn-copy" onclick="copyResult()"><i class="far fa-copy"></i> 結果をコピー</button>
-                <span id="copyMsg" style="margin-left:10px; font-size:0.8rem; color:var(--main); display:none;">コピーしました！</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="history-title"><i class="fas fa-history"></i> 計算履歴 (最新5件)</div>
-        <div id="historyList"></div>
-    </div>
-</div>
-
-<script>
-    let currentMode = 'single';
-    const historyKey = 'gas_calc_history_v2';
-
-    // 初期化
-    window.onload = function(){
-        renderHistory();
-        if(localStorage.getItem('theme') === 'dark'){
-            document.body.classList.add('dark');
-            updateThemeIcon();
-        }
-    };
-
-    // テーマ切り替え
-    document.getElementById('themeToggle').addEventListener('click', () => {
-        document.body.classList.toggle('dark');
-        localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-        updateThemeIcon();
-    });
-
-    function updateThemeIcon(){
-        const btn = document.getElementById('themeToggle');
-        if(document.body.classList.contains('dark')){
-            btn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
-        } else {
-            btn.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
-        }
-    }
-
-    function switchTab(mode){
-        currentMode = mode;
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelector(`.tab-btn[data-mode="${mode}"]`).classList.add('active');
-        
-        if(mode === 'single'){
-            document.getElementById('singleMode').style.display = 'block';
-            document.getElementById('multiMode').style.display = 'none';
-        } else {
-            document.getElementById('singleMode').style.display = 'none';
-            document.getElementById('multiMode').style.display = 'block';
-            if(document.getElementById('carList').innerHTML === ''){
-                addCarRow(); 
-            }
-        }
-        document.getElementById('result').style.display = 'none';
-    }
-
-    function addCarRow(data = {}){
-        const div = document.createElement('div');
-        div.className = 'car-row';
-        div.innerHTML = `
-            <div class="car-header">
-                <span>車両 ${document.querySelectorAll('.car-row').length + 1}</span>
-                <button class="btn-remove" onclick="this.parentElement.parentElement.remove()"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="form-group">
-                <label>走行距離 (km)</label>
-                <input type="number" class="c-dist" value="${data.d||''}">
-            </div>
-            <div class="form-group">
-                <label>燃費 (km/L)</label>
-                <input type="number" class="c-eco" value="${data.e||''}">
-            </div>
-            <div class="form-group">
-                <label>ガソリン価格 (円/L)</label>
-                <input type="number" class="c-price" value="${data.p||''}">
-            </div>
-            <div class="form-group">
-                <label>その他経費</label>
-                <input type="number" class="c-extra" value="${data.ex||''}" placeholder="0">
-            </div>
-        `;
-        document.getElementById('carList').appendChild(div);
-    }
-
-    function calc(){
-        let totalCost = 0;
-        let details = [];
-        let peopleCount = 0;
-        let resultHtml = '';
-        let historyData = {};
-
-        if(currentMode === 'single'){
-            const d = parseFloat(document.getElementById('distance').value);
-            const e = parseFloat(document.getElementById('fuelEconomy').value);
-            const g = parseFloat(document.getElementById('gasPrice').value);
-            const ex = parseFloat(document.getElementById('extraCost').value) || 0;
-            const pe = parseInt(document.getElementById('people').value);
-
-            if(!d || !e || !g){
-                alert('必要な数値を入力してください');
-                return;
-            }
-
-            const gasCost = Math.round((d / e) * g);
-            totalCost = gasCost + ex;
-            peopleCount = pe;
-
-            resultHtml = `
-                <div><span>ガソリン代</span><span>${gasCost.toLocaleString()} 円</span></div>
-                <div><span>その他経費</span><span>${ex.toLocaleString()} 円</span></div>
-            `;
-            
-            historyData = { mode: 'single', d, e, g, extraCost: ex, totalCost, pe };
-
-        } else {
-            const rows = document.querySelectorAll('.car-row');
-            let cars = [];
-            
-            rows.forEach((row, index) => {
-                const d = parseFloat(row.querySelector('.c-dist').value);
-                const e = parseFloat(row.querySelector('.c-eco').value);
-                const p = parseFloat(row.querySelector('.c-price').value);
-                const ex = parseFloat(row.querySelector('.c-extra').value) || 0;
-
-                if(d && e && p){
-                    const cost = Math.round((d / e) * p);
-                    const subTotal = cost + ex;
-                    totalCost += subTotal;
-                    
-                    details.push({
-                        name: `車両${index+1}`,
-                        gas: cost,
-                        extra: ex,
-                        sub: subTotal
-                    });
-                    
-                    cars.push({ d, e, p, ex });
-                }
-            });
-
-            if(details.length === 0){
-                alert('少なくとも1台の有効なデータを入力してください');
-                return;
-            }
-
-            details.forEach(d => {
-                resultHtml += `
-                    <div style="margin-top:10px; font-weight:bold; color:var(--text-light);">${d.name}</div>
-                    <div><span>ガソリン</span><span>${d.gas.toLocaleString()} 円</span></div>
-                    ${d.extra ? `<div><span>経費</span><span>${d.extra.toLocaleString()} 円</span></div>` : ''}
-                    <div style="border-top:1px dotted var(--border); padding-top:2px;"><span>小計</span><span>${d.sub.toLocaleString()} 円</span></div>
-                `;
-            });
-
-            peopleCount = parseInt(document.getElementById('multiPeople').value);
-            historyData = { mode: 'multi', cars, totalCost, pe: peopleCount };
-        }
-
-        // 結果表示
-        document.getElementById('resTotal').innerText = `${totalCost.toLocaleString()} 円`;
-        
-        if(peopleCount > 0){
-            const perPerson = Math.ceil(totalCost / peopleCount);
-            resultHtml += `
-                <div style="margin-top:15px; padding-top:10px; border-top:2px solid var(--border); font-weight:bold; color:var(--highlight-color);">
-                    <span>1人あたり (${peopleCount}人)</span>
-                    <span style="font-size:1.3em;">${perPerson.toLocaleString()} 円</span>
-                </div>
-            `;
-        }
-
-        document.getElementById('resDetail').innerHTML = resultHtml;
-        document.getElementById('result').style.display = 'block';
-        document.getElementById('copyRow').style.display = 'block';
-        
-        saveHistory(historyData);
-    }
-
-    function copyResult(){
-        const total = document.getElementById('resTotal').innerText;
-        const detailText = document.getElementById('resDetail').innerText.replace(/\n\s+/g, '\n');
-        const text = `【ガソリン代計算結果】\n合計: ${total}\n\n[内訳]\n${detailText}\n\nCalculated by ガソリン代計算ツール`;
-        
-        navigator.clipboard.writeText(text).then(() => {
-            const msg = document.getElementById('copyMsg');
-            msg.style.display = 'inline';
-            setTimeout(() => msg.style.display = 'none', 2000);
-        });
-    }
-
-    function saveHistory(data){
-        let history = JSON.parse(localStorage.getItem(historyKey) || '[]');
-        data.date = new Date().toLocaleString('ja-JP', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' });
-        history.unshift(data);
-        if(history.length > 5) history.pop();
-        localStorage.setItem(historyKey, JSON.stringify(history));
-        renderHistory();
-    }
-
-    function renderHistory(){
-        const list = document.getElementById('historyList');
-        const history = JSON.parse(localStorage.getItem(historyKey) || '[]');
-        list.innerHTML = '';
-        
-        history.forEach(item => {
-            const div = document.createElement('div');
-            div.className = 'history-item';
-            div.onclick = () => restore(item);
-            
-            const date = `<span style="color:var(--text-light); font-size:0.85em; margin-right:10px;">${item.date}</span>`;
-            
-            let content = '';
-            let breakdown = '';
-            let perPerson = '';
-
-            if (item.pe) {
-                const pp = Math.ceil(item.totalCost / item.pe);
-                perPerson = ` <span style="font-size:0.85em; color:var(--text-light);">(@${pp.toLocaleString()})</span>`;
-            }
-
-            if(item.mode === 'single'){
-                const gas = item.totalCost - (item.extraCost || 0);
-                breakdown = ` <span style="font-size:0.85em; color:var(--text-light);">(ガス${gas.toLocaleString()}+経費${(item.extraCost||0).toLocaleString()})</span>`;
-                content = `単独: <strong>${item.totalCost.toLocaleString()}円</strong>${breakdown}${perPerson}`;
-            } else {
-                content = `複数(${item.cars.length}台): <strong>${item.totalCost.toLocaleString()}円</strong>${perPerson}`;
-            }
-
-            div.innerHTML = `${date}${content}`;
-            list.appendChild(div);
-        });
-        
-        if(history.length === 0){
-            list.innerHTML = '<div style="text-align:center; font-size:0.85rem; color:var(--text-light);">履歴はありません</div>';
-        }
-    }
-
-    function restore(data){
-        document.getElementById('result').style.display = 'none';
-        
-        if(data.mode === 'single'){
-            switchTab('single');
-            document.getElementById('distance').value = data.d;
-            document.getElementById('fuelEconomy').value = data.e;
-            document.getElementById('gasPrice').value = data.g;
-            document.getElementById('extraCost').value = data.extraCost;
-            document.getElementById('people').value = data.pe || '';
-        } else {
-            switchTab('multi');
-            document.getElementById('carList').innerHTML = '';
-            data.cars.forEach(c => addCarRow(c));
-            document.getElementById('multiPeople').value = data.pe || '';
-        }
-        // スクロールトップ
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-</script>
-</body>
+</body> 
 </html>
